@@ -1,11 +1,12 @@
+#include "SDL.h"
 #include "Grid.h"
 #include<iostream>
 #include<string>
 
 using namespace std;
 
-int main() {
-	int rows, columns, bombs;
+int main(int argc, char **argv) {
+	/*int rows, columns, bombs;
 
 	cout << "Rows:";
 	cin >> rows;
@@ -21,6 +22,11 @@ int main() {
 	grid->GenerateGrid();
 	grid->ShowGrid();
 
-	cin >> rows;
+	cin >> rows;*/
+
+	SDL_Init(SDL_INIT_EVERYTHING);
+
+	SDL_Quit();
+
 	return 0;
 }
