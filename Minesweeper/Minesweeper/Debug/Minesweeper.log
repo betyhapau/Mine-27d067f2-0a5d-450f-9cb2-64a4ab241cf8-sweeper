@@ -1,13 +1,3 @@
-﻿  GridCell.cpp
-  Grid.cpp
-d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\grid.cpp(35): warning C4018: '<': signed/unsigned mismatch
-d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\grid.cpp(37): warning C4018: '<': signed/unsigned mismatch
-d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\grid.cpp(47): warning C4018: '<': signed/unsigned mismatch
-d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\grid.cpp(49): warning C4018: '<': signed/unsigned mismatch
-d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\grid.cpp(58): warning C4018: '<': signed/unsigned mismatch
-d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\grid.cpp(60): warning C4018: '<': signed/unsigned mismatch
-d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\grid.cpp(70): warning C4018: '<': signed/unsigned mismatch
-d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\grid.cpp(103): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
+﻿  Grid.cpp
   Minesweeper.vcxproj -> D:\z-secret-mystuff\school_stuff\IntroProgramare\Minesweeper\Mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\Minesweeper\Debug\Minesweeper.exe
   Minesweeper.vcxproj -> D:\z-secret-mystuff\school_stuff\IntroProgramare\Minesweeper\Mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\Minesweeper\Debug\Minesweeper.pdb (Full PDB)

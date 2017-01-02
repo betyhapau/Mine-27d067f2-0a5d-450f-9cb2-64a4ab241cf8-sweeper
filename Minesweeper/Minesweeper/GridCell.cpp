@@ -3,45 +3,50 @@
 
 using namespace std;
 
-GridCell::GridCell()
+GridCell::GridCell(int xIndex, int yIndex)
 {
-	Reset();
+	this->x = xIndex;
+	this->y = yIndex;
+	this->Reset();
 }
 
+GridCell::GridCell()
+{
+}
 
 GridCell::~GridCell()
 {
 }
 
 // Sets the neighbours of the current grid cell
-void GridCell::SetNeighbours(vector<GridCell> neighbourCells) 
+void GridCell::SetNeighbours(vector<GridCell*> neighbourCells) 
 {
-	neighbours = neighbourCells;
+	this->neighbours = neighbourCells;
 }
 
 // Sets the bomb on current grid cell
 void GridCell::SetBomb() 
 {
-	HasFlag = true;
+	this->HasBomb = true;
 
-	InformNeighboursBombWasAdded();
+	this->InformNeighboursBombWasAdded();
 }
 
 // Resets the current grid cell
 void GridCell::Reset() 
 {
-	HasFlag = false;
-	HasBomb = false;
-	IsVisible = false;
-	BombNeighboursNumber = 0;
-
-	neighbours.clear();
+	this->HasFlag = false;
+	this->HasBomb = false;
+	this->IsVisible = false;
+	this->BombNeighboursNumber = 0;
+	
+	this->neighbours.clear();
 }
 
 void GridCell::InformNeighboursBombWasAdded() 
 {
-	for (unsigned i = 0; i < neighbours.size(); i++) 
+	for (unsigned i = 0; i < this->neighbours.size(); i++)
 	{
-		neighbours[i].BombNeighboursNumber++;
+		(this->neighbours[i])->BombNeighboursNumber++;
 	}
 }

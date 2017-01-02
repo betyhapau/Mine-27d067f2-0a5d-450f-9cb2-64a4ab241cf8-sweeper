@@ -1,4 +1,5 @@
 #include "Grid.h"
+#include "GridCell.h"
 #include <vector>
 #include <algorithm>
 #include <iterator>
@@ -6,13 +7,12 @@
 
 Grid::Grid(int rowNr, int columnNr, int bombNr) 
 {
-	rows = rowNr;
-	columns = columnNr;
-	numberOfBombs = bombNr;
+	this->rows = rowNr;
+	this->columns = columnNr;
+	this->numberOfBombs = bombNr;
 
-	CreateGrid();
+	this->CreateGrid();
 }
-
 
 Grid::~Grid()
 {
@@ -21,22 +21,44 @@ Grid::~Grid()
 // Generates the grid
 void Grid::GenerateGrid() 
 {
-	std::vector<unsigned int> randomPositions = GetRandomBombPositions();
+	std::vector<int> randomPositions = GetRandomBombPositions();
 	
 	for (unsigned i = 0; i < randomPositions.size(); i++)
 	{
-		gridWithCells[randomPositions[i] % rows][randomPositions[i] % columns].SetBomb();
+		this->gridWithCells[randomPositions[i] / rows][randomPositions[i] % rows].SetBomb();
+	}
+}
+
+void Grid::ShowGrid() 
+{
+	for (int i = 0; i < rows; i++)
+	{
+		std::cout << "[ ";
+
+		for (int j = 0; j < columns; j++)
+		{
+			if (this->gridWithCells[i][j].HasBomb == true)
+			{
+				std::cout << "b ";
+				continue;
+			}
+
+			std::cout << this->gridWithCells[i][j].BombNeighboursNumber;
+			std::cout << " ";
+			
+		}
+		std::cout << "]\n";
 	}
 }
 
 // Resets the GridCells
 void Grid::Reset() 
 {
-	for (unsigned i = 0; i < rows; i++)
+	for (int i = 0; i < rows; i++)
 	{
-		for (unsigned j = 0; j < columns; j++)
+		for (int j = 0; j < columns; j++)
 		{
-			gridWithCells[i][j].Reset();
+			this->gridWithCells[i][j].Reset();
 		}
 	}
 }
@@ -44,35 +66,39 @@ void Grid::Reset()
 // Creates the Grid according to rows and columns
 void Grid::CreateGrid() 
 {
-	for (unsigned i = 0; i < rows; i++) 
+	std::vector<GridCell> cells (this->columns);
+	for (int i = 0; i < this->rows; i++)
 	{
-		for (unsigned j = 0; j < columns; j++)
+		cells.clear();
+		for (int j = 0; j < this->columns; j++)
 		{
-			GridCell* currentCell = new GridCell();
-			gridWithCells[i][j] = *currentCell;
+			GridCell* currentCell = new GridCell(i, j);
+			cells.push_back(*currentCell);
 		}
+
+		this->gridWithCells.push_back(cells);
 	}
 
-	std::vector<GridCell> neighbours;
+	std::vector<GridCell*> neighbours;
 
-	for (unsigned i = 0; i < rows; i++)
+	for (int i = 0; i < this->rows; i++)
 	{
-		for (unsigned j = 0; j < columns; j++)
+		for (int j = 0; j < this->columns; j++)
 		{
-			GetElements(i, j, neighbours);
+			this->GetElements(i, j, neighbours);
 			neighbours.pop_back();
 
 			if (i - 1 >= 0)
 			{
-				GetElements(i - 1, j, neighbours);
+				this->GetElements(i - 1, j, neighbours);
 			}
 
 			if (i + 1 < rows)
 			{
-				GetElements(i + 1, j, neighbours);
+				this->GetElements(i + 1, j, neighbours);
 			}
 			
-			gridWithCells[i][j].SetNeighbours(neighbours);
+			this->gridWithCells[i][j].SetNeighbours(neighbours);
 
 			neighbours.clear();
 		}
@@ -80,33 +106,33 @@ void Grid::CreateGrid()
 
 }
 
-void Grid::GetElements(int index, int j, std::vector<GridCell> &neighbours)
+void Grid::GetElements(int index, int j, std::vector<GridCell*> &neighbours)
 {
 	if (j - 1 >= 0) 
 	{
-		neighbours.push_back(gridWithCells[index][j - 1]);
+		neighbours.push_back(&this->gridWithCells[index][j - 1]);
 	}
 
-	if (j + 1 < columns)
+	if (j + 1 < this->columns)
 	{
-		neighbours.push_back(gridWithCells[index][j + 1]);
+		neighbours.push_back(&this->gridWithCells[index][j + 1]);
 	}
 
-	neighbours.push_back(gridWithCells[index][j]);
+	neighbours.push_back(&this->gridWithCells[index][j]);
 }
 
 // Generates the random positions for the bombs in the current grid
-std::vector<unsigned int> Grid::GetRandomBombPositions()
+std::vector<int> Grid::GetRandomBombPositions()
 {
-	std::vector<unsigned int> v, result;
+	std::vector<int> v, result (this->numberOfBombs);
 
-	for (unsigned i = 0; i< rows * columns; i++) {
+	for (int i = 0; i< this->rows * this->columns; i++) {
 		v.push_back(i);
 	}
 	
 	// shuffle the initial vector and get the first numberOfBombs elements
 	std::random_shuffle(v.begin(), v.end());
-	std::copy(v.begin(), v.begin() + numberOfBombs, result.begin());
+	std::copy(v.begin(), v.begin() + this->numberOfBombs, result.begin());
 
 	return result;
 }

@@ -8,11 +8,11 @@ private:
 	int columns;
 	int rows;
 	int numberOfBombs;
-	GridCell gridWithCells[100][100];
+	std::vector< std::vector<GridCell> > gridWithCells;
 
 	void CreateGrid();
-	std::vector<unsigned int> GetRandomBombPositions();
-	void GetElements(int index, int j, std::vector<GridCell> &neighbours);
+	std::vector<int> GetRandomBombPositions();
+	void GetElements(int index, int j, std::vector<GridCell*> &neighbours);
 
 
 public:
@@ -21,5 +21,6 @@ public:
 
 	void GenerateGrid();
 	void Reset();
+	void ShowGrid();
 };
 
