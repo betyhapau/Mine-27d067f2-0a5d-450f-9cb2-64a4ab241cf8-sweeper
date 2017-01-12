@@ -25,7 +25,7 @@ void Grid::GenerateGrid()
 	
 	for (unsigned i = 0; i < randomPositions.size(); i++)
 	{
-		this->gridWithCells[randomPositions[i] / rows][randomPositions[i] % rows].SetBomb();
+		this->gridWithCells[randomPositions[i] / rows][randomPositions[i] % rows]->SetBomb();
 	}
 }
 
@@ -37,13 +37,13 @@ void Grid::ShowGrid()
 
 		for (int j = 0; j < columns; j++)
 		{
-			if (this->gridWithCells[i][j].HasBomb == true)
+			if (this->gridWithCells[i][j]->HasBomb == true)
 			{
 				std::cout << "b ";
 				continue;
 			}
 
-			std::cout << this->gridWithCells[i][j].BombNeighboursNumber;
+			std::cout << this->gridWithCells[i][j]->BombNeighboursNumber;
 			std::cout << " ";
 			
 		}
@@ -58,7 +58,7 @@ void Grid::Reset()
 	{
 		for (int j = 0; j < columns; j++)
 		{
-			this->gridWithCells[i][j].Reset();
+			this->gridWithCells[i][j]->Reset();
 		}
 	}
 }
@@ -66,14 +66,14 @@ void Grid::Reset()
 // Creates the Grid according to rows and columns
 void Grid::CreateGrid() 
 {
-	std::vector<GridCell> cells (this->columns);
+	std::vector<GridCell*> cells (this->columns);
 	for (int i = 0; i < this->rows; i++)
 	{
 		cells.clear();
 		for (int j = 0; j < this->columns; j++)
 		{
 			GridCell* currentCell = new GridCell(i, j);
-			cells.push_back(*currentCell);
+			cells.push_back(currentCell);
 		}
 
 		this->gridWithCells.push_back(cells);
@@ -98,7 +98,7 @@ void Grid::CreateGrid()
 				this->GetElements(i + 1, j, neighbours);
 			}
 			
-			this->gridWithCells[i][j].SetNeighbours(neighbours);
+			this->gridWithCells[i][j]->SetNeighbours(neighbours);
 
 			neighbours.clear();
 		}
@@ -110,15 +110,15 @@ void Grid::GetElements(int index, int j, std::vector<GridCell*> &neighbours)
 {
 	if (j - 1 >= 0) 
 	{
-		neighbours.push_back(&this->gridWithCells[index][j - 1]);
+		neighbours.push_back(this->gridWithCells[index][j - 1]);
 	}
 
 	if (j + 1 < this->columns)
 	{
-		neighbours.push_back(&this->gridWithCells[index][j + 1]);
+		neighbours.push_back(this->gridWithCells[index][j + 1]);
 	}
 
-	neighbours.push_back(&this->gridWithCells[index][j]);
+	neighbours.push_back(this->gridWithCells[index][j]);
 }
 
 // Generates the random positions for the bombs in the current grid

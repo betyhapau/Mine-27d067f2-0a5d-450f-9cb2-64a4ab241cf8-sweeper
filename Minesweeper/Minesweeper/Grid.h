@@ -8,7 +8,7 @@ private:
 	int columns;
 	int rows;
 	int numberOfBombs;
-	std::vector< std::vector<GridCell> > gridWithCells;
+	std::vector< std::vector<GridCell*> > gridWithCells;
 
 	void CreateGrid();
 	std::vector<int> GetRandomBombPositions();

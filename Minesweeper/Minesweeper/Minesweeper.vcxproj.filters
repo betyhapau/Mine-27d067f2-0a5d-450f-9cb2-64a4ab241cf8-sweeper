@@ -21,6 +21,9 @@
     <ClInclude Include="GridCell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Grid.cpp">
@@ -32,5 +35,58 @@
     <ClCompile Include="Program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Art res\BombCell.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\Cell1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\Cell2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\Cell3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\Cell4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\Cell5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\Cell6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\Cell7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\Cell8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\ClickedBombCell.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\EasyButton.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\EmptyCell.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\FlagCell.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\HardButton.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\MediumButton.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Art res\UnclickedCell.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

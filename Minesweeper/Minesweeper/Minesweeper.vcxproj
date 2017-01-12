@@ -147,11 +147,31 @@
   <ItemGroup>
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridCell.h" />
+    <ClInclude Include="UIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridCell.cpp" />
     <ClCompile Include="Program.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Art res\BombCell.bmp" />
+    <Image Include="Art res\Cell1.bmp" />
+    <Image Include="Art res\Cell2.bmp" />
+    <Image Include="Art res\Cell3.bmp" />
+    <Image Include="Art res\Cell4.bmp" />
+    <Image Include="Art res\Cell5.bmp" />
+    <Image Include="Art res\Cell6.bmp" />
+    <Image Include="Art res\Cell7.bmp" />
+    <Image Include="Art res\Cell8.bmp" />
+    <Image Include="Art res\ClickedBombCell.bmp" />
+    <Image Include="Art res\EasyButton.bmp" />
+    <Image Include="Art res\EmptyCell.bmp" />
+    <Image Include="Art res\FlagCell.bmp" />
+    <Image Include="Art res\HardButton.bmp" />
+    <Image Include="Art res\MediumButton.bmp" />
+    <Image Include="Art res\UnclickedCell.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
