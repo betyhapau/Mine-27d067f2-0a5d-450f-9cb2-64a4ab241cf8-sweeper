@@ -1,4 +1,12 @@
-﻿  GameManager.cpp
-d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\gamemanager.cpp(102): warning C4018: '<': signed/unsigned mismatch
+﻿  UIManager.cpp
+d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\uimanager.cpp(300): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: see declaration of 'strcpy'
+d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\uimanager.cpp(301): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: see declaration of 'strcat'
+d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\uimanager.cpp(302): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: see declaration of 'strcat'
+  GameManager.cpp
+d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\gamemanager.cpp(103): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   Minesweeper.vcxproj -> D:\z-secret-mystuff\school_stuff\IntroProgramare\Minesweeper\Mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\Minesweeper\Debug\Minesweeper.exe
   Minesweeper.vcxproj -> D:\z-secret-mystuff\school_stuff\IntroProgramare\Minesweeper\Mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\Minesweeper\Debug\Minesweeper.pdb (Full PDB)

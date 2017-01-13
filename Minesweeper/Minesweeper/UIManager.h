@@ -47,5 +47,6 @@ public:
 	void ShowEmpty(int i, int j);
 	void ShowNumber(int i, int j, int number);
 	void ShowBomb();
+	void Reset();
 };
 

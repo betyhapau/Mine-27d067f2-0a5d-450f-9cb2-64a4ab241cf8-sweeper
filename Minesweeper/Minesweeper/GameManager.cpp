@@ -39,6 +39,7 @@ void GameManager::ChangeGameDifficulty(int gameMode)
 		if (this->grid != NULL)
 		{
 			this->grid->Reset();
+			this->uiManager->Reset();
 		}
 
 		return;

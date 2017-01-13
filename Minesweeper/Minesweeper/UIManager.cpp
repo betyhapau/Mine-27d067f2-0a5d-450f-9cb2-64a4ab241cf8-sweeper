@@ -78,10 +78,7 @@ void UIManager::Update()
 			}
 			else if(event.type == SDL_MOUSEBUTTONUP)
 			{
-				if (!this->gameMng->HasGameEnded) 
-				{
 					this->handleClick(event.button);
-				}
 			}
 		}
 
@@ -108,6 +105,17 @@ void UIManager::ShowBomb()
 	this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/ClickedBombCell.bmp");
 
 	SDL_UpdateWindowSurface(this->window);
+}
+
+void UIManager::Reset()
+{
+	for (int i = 0; i < this->rows; i++)
+	{
+		for (int j = 0; j < this->columns; j++)
+		{
+			this->uiGridCells[i][j]->ChangeImage("ArtRes/UnclickedCell.bmp");
+		}
+	}
 }
 
 void UIManager::limitFramerate(Uint32 start_tick)
@@ -202,32 +210,35 @@ void UIManager::handleClick(SDL_MouseButtonEvent event)
 		return;
 	}
 
-	if (this->checkIfGridClicked(event.x, event.y)) 
+	if (!this->gameMng->HasGameEnded)
 	{
-		if (event.button == SDL_BUTTON_LEFT)
+		if (this->checkIfGridClicked(event.x, event.y))
 		{
-			this->onLeftClick();
-		}
-		else if (event.button == SDL_BUTTON_RIGHT)
-		{
-			if (this->gameMng->ToggleFlag())
+			if (event.button == SDL_BUTTON_LEFT)
 			{
-				if (this->flags != 0) 
+				this->onLeftClick();
+			}
+			else if (event.button == SDL_BUTTON_RIGHT)
+			{
+				if (this->gameMng->ToggleFlag())
 				{
-					this->flags--;
-					this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/FlagCell.bmp");
+					if (this->flags != 0)
+					{
+						this->flags--;
+						this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/FlagCell.bmp");
+					}
 				}
-			}
-			else
-			{
-				this->flags++;
-				this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/UnclickedCell.bmp");
+				else
+				{
+					this->flags++;
+					this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/UnclickedCell.bmp");
+				}
+
+				this->setFlagNumber();
 			}
 
-			this->setFlagNumber();
+			SDL_UpdateWindowSurface(this->window);
 		}
-
-		SDL_UpdateWindowSurface(this->window);
 	}
 }
 
