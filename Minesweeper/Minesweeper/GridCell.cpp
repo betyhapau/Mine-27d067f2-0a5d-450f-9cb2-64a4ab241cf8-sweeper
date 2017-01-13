@@ -5,8 +5,8 @@ using namespace std;
 
 GridCell::GridCell(int xIndex, int yIndex)
 {
-	this->x = xIndex;
-	this->y = yIndex;
+	this->x = yIndex;
+	this->y = xIndex;
 	this->Reset();
 }
 

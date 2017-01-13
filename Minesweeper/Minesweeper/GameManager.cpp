@@ -28,7 +28,7 @@ GameManager::~GameManager()
 void GameManager::StartGame()
 {
 	this->uiManager = new UIManager(this);
-	this->ChangeGameDifficulty(0);
+	this->ChangeGameDifficulty(1);
 }
 
 void GameManager::ChangeGameDifficulty(int gameMode)
@@ -90,13 +90,26 @@ void GameManager::OnLeftClick()
 
 	int nrOfNeighbourBombs = this->grid->HasNumber(row, column);
 
-	if(nrOfNeighbourBombs == 0)
+	if (nrOfNeighbourBombs != 0)
 	{
-		this->uiManager->ShowEmpty();
+		this->uiManager->ShowNumber(row, column, nrOfNeighbourBombs);
 	}
-	else
+}
+
+void GameManager::ShowEmpty()
+{
+	int number;
+	for (int i = 0; i < this->grid->RowsList.size(); i++)
 	{
-		this->uiManager->ShowNumber(nrOfNeighbourBombs);
+		number = this->grid->NumberList[i];
+		if (number == 0)
+		{
+			this->uiManager->ShowEmpty(this->grid->RowsList[i], this->grid->ColumnsList[i]);
+		}
+		else
+		{
+			this->uiManager->ShowNumber(this->grid->RowsList[i], this->grid->ColumnsList[i], number);
+		}
 	}
 }
 

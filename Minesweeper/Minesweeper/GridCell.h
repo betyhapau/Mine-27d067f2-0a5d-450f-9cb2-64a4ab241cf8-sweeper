@@ -4,12 +4,11 @@
 class GridCell
 {
 private:
-	std::vector<GridCell*> neighbours;
-
 	void InformNeighboursBombWasAdded();
 
 
 public:
+	std::vector<GridCell*> neighbours;
 	bool HasFlag;
 	bool HasBomb;
 	bool IsVisible;

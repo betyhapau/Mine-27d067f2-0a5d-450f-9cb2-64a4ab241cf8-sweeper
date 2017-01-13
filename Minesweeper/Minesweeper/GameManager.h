@@ -20,5 +20,6 @@ public:
 	void ChangeGameDifficulty(int gameMode);
 	bool ToggleFlag();
 	void OnLeftClick();
+	void ShowEmpty();
 };
 

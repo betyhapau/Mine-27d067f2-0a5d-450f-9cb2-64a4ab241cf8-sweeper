@@ -89,16 +89,16 @@ void UIManager::Update()
 	}
 }
 
-void UIManager::ShowEmpty()
+void UIManager::ShowEmpty(int i, int j)
 {
-	this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/EmptyCell.bmp");
+	this->uiGridCells[i][j]->ChangeImage("ArtRes/EmptyCell.bmp");
 
 	SDL_UpdateWindowSurface(this->window);
 }
 
-void UIManager::ShowNumber(int number)
+void UIManager::ShowNumber(int i, int j, int number)
 {
-	this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage(this->getCellImagePath(number));
+	this->uiGridCells[i][j]->ChangeImage(this->getCellImagePath(number));
 
 	SDL_UpdateWindowSurface(this->window);
 }

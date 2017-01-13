@@ -16,9 +16,14 @@ private:
 	void CreateGrid();
 	std::vector<int> GetRandomBombPositions();
 	void GetElements(int index, int j, std::vector<GridCell*> &neighbours);
+	void UncoverMap(int i, int j);
 
 
 public:
+	std::vector< int > RowsList;
+	std::vector< int > ColumnsList;
+	std::vector< int > NumberList;
+
 	Grid(int rowNr, int columnNr, int bombNr, GameManager* gameManager);
 	~Grid();
 

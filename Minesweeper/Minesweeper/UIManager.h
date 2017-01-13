@@ -44,8 +44,8 @@ public:
 	void Setup(int numberOfRows, int numberOfColumns, int flags);
 	void GenerateWindowContent();
 	void Update();
-	void ShowEmpty();
-	void ShowNumber(int number);
+	void ShowEmpty(int i, int j);
+	void ShowNumber(int i, int j, int number);
 	void ShowBomb();
 };
 

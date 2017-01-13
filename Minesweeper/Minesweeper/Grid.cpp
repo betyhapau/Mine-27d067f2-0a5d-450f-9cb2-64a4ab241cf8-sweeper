@@ -75,7 +75,17 @@ bool Grid::HasBomb(int i, int j)
 
 int Grid::HasNumber(int i, int j)
 {
-	return this->gridWithCells[i][j]->BombNeighboursNumber;
+	int number = this->gridWithCells[i][j]->BombNeighboursNumber;
+
+	if (number == 0) 
+	{
+		this->RowsList.push_back(i);
+		this->ColumnsList.push_back(j);
+		this->NumberList.push_back(this->gridWithCells[i][j]->BombNeighboursNumber);
+		this->UncoverMap(i, j);
+	}
+
+	return number;
 }
 
 // Resets the GridCells
@@ -149,6 +159,29 @@ void Grid::GetElements(int index, int j, std::vector<GridCell*> &neighbours)
 	}
 
 	neighbours.push_back(this->gridWithCells[index][j]);
+}
+
+void Grid::UncoverMap(int i, int j)
+{
+	if (this->gridWithCells[i][j]->BombNeighboursNumber == 0)
+	{
+		int k;
+		for (k = 0; k < this->gridWithCells[i][j]->neighbours.size(); k++) 
+		{
+			int newI = this->gridWithCells[i][j]->neighbours[k]->y;
+			int newJ = this->gridWithCells[i][j]->neighbours[k]->x;
+
+			if ((std::find(this->RowsList.begin(), this->RowsList.end(), newI) == this->RowsList.end()) || ((std::find(this->ColumnsList.begin(), this->ColumnsList.end(), newJ) == this->ColumnsList.end())))
+			{
+				this->RowsList.push_back(newI);
+				this->ColumnsList.push_back(newJ);
+				this->NumberList.push_back(this->gridWithCells[i][j]->neighbours[k]->BombNeighboursNumber);
+
+				this->UncoverMap(newI, newJ);
+			}
+		}
+		this->gameMng->ShowEmpty();
+	}
 }
 
 // Generates the random positions for the bombs in the current grid
