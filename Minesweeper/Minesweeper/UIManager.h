@@ -31,6 +31,8 @@ private:
 	int checkIfButtonClicked(int x, int y);
 	bool checkIfGridClicked(int x, int y);
 	void setFlagNumber();
+	void onLeftClick();
+	char* getCellImagePath(int number);
 
 public:
 	int CurrentClickedCellColumn;
@@ -42,5 +44,8 @@ public:
 	void Setup(int numberOfRows, int numberOfColumns, int flags);
 	void GenerateWindowContent();
 	void Update();
+	void ShowEmpty();
+	void ShowNumber(int number);
+	void ShowBomb();
 };
 

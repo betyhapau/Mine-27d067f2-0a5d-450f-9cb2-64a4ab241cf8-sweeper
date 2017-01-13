@@ -55,9 +55,27 @@ void Grid::ShowGrid()
 	}
 }
 
-void Grid::SetFlag(int i, int j)
+bool Grid::ToggleFlag(int i, int j)
 {
-	this->gridWithCells[i][j]->HasFlag = true;
+	if (this->gridWithCells[i][j]->HasFlag) {
+		this->gridWithCells[i][j]->HasFlag = false;
+	}
+	else
+	{
+		this->gridWithCells[i][j]->HasFlag = true;
+	}
+
+	return this->gridWithCells[i][j]->HasFlag;
+}
+
+bool Grid::HasBomb(int i, int j)
+{
+	return this->gridWithCells[i][j]->HasBomb;
+}
+
+int Grid::HasNumber(int i, int j)
+{
+	return this->gridWithCells[i][j]->BombNeighboursNumber;
 }
 
 // Resets the GridCells

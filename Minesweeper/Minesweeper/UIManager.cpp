@@ -78,12 +78,36 @@ void UIManager::Update()
 			}
 			else if(event.type == SDL_MOUSEBUTTONUP)
 			{
-				this->handleClick(event.button);
+				if (!this->gameMng->HasGameEnded) 
+				{
+					this->handleClick(event.button);
+				}
 			}
 		}
 
 		limitFramerate(start_tick);
 	}
+}
+
+void UIManager::ShowEmpty()
+{
+	this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/EmptyCell.bmp");
+
+	SDL_UpdateWindowSurface(this->window);
+}
+
+void UIManager::ShowNumber(int number)
+{
+	this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage(this->getCellImagePath(number));
+
+	SDL_UpdateWindowSurface(this->window);
+}
+
+void UIManager::ShowBomb()
+{
+	this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/ClickedBombCell.bmp");
+
+	SDL_UpdateWindowSurface(this->window);
 }
 
 void UIManager::limitFramerate(Uint32 start_tick)
@@ -182,17 +206,25 @@ void UIManager::handleClick(SDL_MouseButtonEvent event)
 	{
 		if (event.button == SDL_BUTTON_LEFT)
 		{
-
+			this->onLeftClick();
 		}
 		else if (event.button == SDL_BUTTON_RIGHT)
 		{
-			if (this->flags != 0) 
+			if (this->gameMng->ToggleFlag())
 			{
-				this->flags--;
-				this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/FlagCell.bmp");
-				this->gameMng->SetFlag();
-				this->setFlagNumber();
+				if (this->flags != 0) 
+				{
+					this->flags--;
+					this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/FlagCell.bmp");
+				}
 			}
+			else
+			{
+				this->flags++;
+				this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/UnclickedCell.bmp");
+			}
+
+			this->setFlagNumber();
 		}
 
 		SDL_UpdateWindowSurface(this->window);
@@ -239,11 +271,24 @@ bool UIManager::checkIfGridClicked(int x, int y)
 
 void UIManager::setFlagNumber()
 {
-	char integer_string[32];
+	this->uiFlagNumber[0]->ChangeImage(this->getCellImagePath(this->flags / 10));
+	this->uiFlagNumber[1]->ChangeImage(this->getCellImagePath(this->flags % 10));
+}
 
-	sprintf(integer_string, "ArtRes/Cell%d.bmp", this->flags / 10);
-	this->uiFlagNumber[0]->ChangeImage(integer_string);
-	
-	sprintf(integer_string, "ArtRes/Cell%d.bmp", this->flags % 10);
-	this->uiFlagNumber[1]->ChangeImage(integer_string);
+void UIManager::onLeftClick()
+{
+	this->gameMng->OnLeftClick();
+}
+
+char* UIManager::getCellImagePath(int number)
+{
+	char integer_string[32];
+	sprintf_s(integer_string, "%d", number);
+
+	char* str = new char[16];
+	strcpy(str, "ArtRes/Cell");
+	strcat(str, integer_string);
+	strcat(str, ".bmp");
+
+	return str;
 }

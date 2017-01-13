@@ -33,6 +33,7 @@ void GameManager::StartGame()
 
 void GameManager::ChangeGameDifficulty(int gameMode)
 {
+	this->HasGameEnded = false;
 	if (this->GameMode == gameMode)
 	{
 		if (this->grid != NULL)
@@ -70,9 +71,33 @@ void GameManager::ChangeGameDifficulty(int gameMode)
 	this->uiManager->Update();
 }
 
-void GameManager::SetFlag()
+bool GameManager::ToggleFlag()
 {
+	return this->grid->ToggleFlag(this->uiManager->CurrentClickedCellRow, this->uiManager->CurrentClickedCellColumn);
+}
 
+void GameManager::OnLeftClick()
+{
+	int row = this->uiManager->CurrentClickedCellRow;
+	int column = this->uiManager->CurrentClickedCellColumn;
+
+	if (this->grid->HasBomb(row, column))
+	{
+		this->HasGameEnded = true;
+		this->uiManager->ShowBomb();
+		return;
+	}
+
+	int nrOfNeighbourBombs = this->grid->HasNumber(row, column);
+
+	if(nrOfNeighbourBombs == 0)
+	{
+		this->uiManager->ShowEmpty();
+	}
+	else
+	{
+		this->uiManager->ShowNumber(nrOfNeighbourBombs);
+	}
 }
 
 

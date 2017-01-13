@@ -10,6 +10,7 @@ private:
 	UIManager* uiManager;
 
 public:
+	bool HasGameEnded;
 	int GameMode;
 
 	GameManager();
@@ -17,6 +18,7 @@ public:
 
 	void StartGame();
 	void ChangeGameDifficulty(int gameMode);
-	void SetFlag();
+	bool ToggleFlag();
+	void OnLeftClick();
 };
 

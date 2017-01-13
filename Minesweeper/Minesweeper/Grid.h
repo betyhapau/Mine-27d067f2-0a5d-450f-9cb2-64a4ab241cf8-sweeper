@@ -25,6 +25,8 @@ public:
 	void GenerateGrid();
 	void Reset();
 	void ShowGrid();
-	void SetFlag(int i, int j);
+	bool ToggleFlag(int i, int j);
+	bool HasBomb(int i, int j);
+	int HasNumber(int i, int j);
 };
 
