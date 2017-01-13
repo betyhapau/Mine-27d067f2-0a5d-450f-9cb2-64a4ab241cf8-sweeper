@@ -1,15 +1,17 @@
 #include "Grid.h"
 #include "GridCell.h"
+#include "GameManager.h"
 #include <vector>
 #include <algorithm>
 #include <iterator>
 #include <iostream>
 
-Grid::Grid(int rowNr, int columnNr, int bombNr) 
+Grid::Grid(int rowNr, int columnNr, int bombNr, GameManager* gameManager)
 {
 	this->rows = rowNr;
 	this->columns = columnNr;
 	this->numberOfBombs = bombNr;
+	this->gameMng = gameManager;
 
 	this->CreateGrid();
 }
@@ -23,9 +25,11 @@ void Grid::GenerateGrid()
 {
 	std::vector<int> randomPositions = GetRandomBombPositions();
 	
+	int rowOrColumn = rows < columns ? columns : rows;
+
 	for (unsigned i = 0; i < randomPositions.size(); i++)
 	{
-		this->gridWithCells[randomPositions[i] / rows][randomPositions[i] % rows]->SetBomb();
+		this->gridWithCells[randomPositions[i] / rowOrColumn][randomPositions[i] % rowOrColumn]->SetBomb();
 	}
 }
 
@@ -49,6 +53,11 @@ void Grid::ShowGrid()
 		}
 		std::cout << "]\n";
 	}
+}
+
+void Grid::SetFlag(int i, int j)
+{
+	this->gridWithCells[i][j]->HasFlag = true;
 }
 
 // Resets the GridCells

@@ -1,3 +1,7 @@
 ﻿  UIManager.cpp
+d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\uimanager.cpp(244): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: see declaration of 'sprintf'
+d:\z-secret-mystuff\school_stuff\introprogramare\minesweeper\mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\minesweeper\minesweeper\uimanager.cpp(247): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: see declaration of 'sprintf'
   Minesweeper.vcxproj -> D:\z-secret-mystuff\school_stuff\IntroProgramare\Minesweeper\Mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\Minesweeper\Debug\Minesweeper.exe
   Minesweeper.vcxproj -> D:\z-secret-mystuff\school_stuff\IntroProgramare\Minesweeper\Mine-27d067f2-0a5d-450f-9cb2-64a4ab241cf8-sweeper\Minesweeper\Debug\Minesweeper.pdb (Full PDB)

@@ -3,6 +3,8 @@
 #include <vector>
 #pragma once
 
+class GameManager;
+
 class UIManager
 {
 
@@ -11,11 +13,13 @@ private:
 	int windowHeight;
 	int rows;
 	int columns;
+	int flags;
 	SDL_Window *window; 
 	SDL_Surface *screen;
 	std::vector<UIElement*> uiButtons;
 	std::vector<UIElement*> uiFlagNumber;
 	std::vector< std::vector<UIElement*> > uiGridCells;
+	GameManager* gameMng;
 
 	void limitFramerate(Uint32 start_tick);
 	void createWindow();
@@ -23,12 +27,19 @@ private:
 	void createUIButtons();
 	void createUIFlagIndicator();
 	void createUIGrid();
+	void handleClick(SDL_MouseButtonEvent event);
+	int checkIfButtonClicked(int x, int y);
+	bool checkIfGridClicked(int x, int y);
+	void setFlagNumber();
 
 public:
-	UIManager();
+	int CurrentClickedCellColumn;
+	int CurrentClickedCellRow;
+
+	UIManager(GameManager* gameManager);
 	~UIManager();
 
-	void Setup(int numberOfRows, int numberOfColumns);
+	void Setup(int numberOfRows, int numberOfColumns, int flags);
 	void GenerateWindowContent();
 	void Update();
 };

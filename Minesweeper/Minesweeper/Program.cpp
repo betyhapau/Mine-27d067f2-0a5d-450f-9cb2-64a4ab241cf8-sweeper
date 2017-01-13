@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include <SDL.h>
 #include<iostream>
 #include<string>
 

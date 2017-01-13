@@ -1,6 +1,7 @@
-#include "Grid.h"
-#include "UIManager.h"
 #pragma once
+
+class Grid;
+class UIManager;
 
 class GameManager
 {
@@ -16,5 +17,6 @@ public:
 
 	void StartGame();
 	void ChangeGameDifficulty(int gameMode);
+	void SetFlag();
 };
 

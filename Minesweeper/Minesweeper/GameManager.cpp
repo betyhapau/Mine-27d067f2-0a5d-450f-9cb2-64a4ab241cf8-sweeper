@@ -27,7 +27,7 @@ GameManager::~GameManager()
 
 void GameManager::StartGame()
 {
-	this->uiManager = new UIManager();
+	this->uiManager = new UIManager(this);
 	this->ChangeGameDifficulty(0);
 }
 
@@ -65,9 +65,14 @@ void GameManager::ChangeGameDifficulty(int gameMode)
 		bombs = hardBombNumber;
 	}
 
-	this->grid = new Grid(rows, columns, bombs);
-	this->uiManager->Setup(rows, columns);
+	this->grid = new Grid(rows, columns, bombs, this);
+	this->uiManager->Setup(rows, columns, bombs);
 	this->uiManager->Update();
+}
+
+void GameManager::SetFlag()
+{
+
 }
 
 

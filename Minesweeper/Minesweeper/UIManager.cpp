@@ -1,7 +1,11 @@
 #include "UIManager.h"
+#include "GameManager.h"
 #include "SDL.h"
 #include <iostream>
 #include <vector>
+#include <string>
+
+#define buttonEscapeValue 9
 
 #define verticalEmptySpace 50
 #define cellSizeUI 34
@@ -11,14 +15,16 @@
 
 using namespace std;
 
-UIManager::UIManager()
+UIManager::UIManager(GameManager* gameManager)
 {
 	this->windowWidth = 0;
 	this->windowHeight = 0;
 	this->rows = 0;
 	this->columns = 0;
+	this->flags = 0;
 	this->window = NULL;
 	this->screen = NULL;
+	this->gameMng = gameManager;
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 }
@@ -27,10 +33,11 @@ UIManager::~UIManager()
 {
 }
 
-void UIManager::Setup(int numberOfRows, int numberOfColumns)
+void UIManager::Setup(int numberOfRows, int numberOfColumns, int flags)
 {
 	this->rows = numberOfRows;
 	this->columns = numberOfColumns;
+	this->flags = flags;
 	this->windowHeight = (cellSizeUI * 2 + verticalEmptySpace + this->rows * cellSizeUI);
 	this->windowWidth = this->columns * cellSizeUI;
 
@@ -53,21 +60,25 @@ void UIManager::Update()
 {
 	// Listen to events
 	Uint32 start_tick = NULL;
-	SDL_Event ev;
+	SDL_Event event;
 	bool running = true;
 
 	while (running)
 	{
 		start_tick = SDL_GetTicks();
 
-		while (SDL_PollEvent(&ev))
+		while (SDL_PollEvent(&event))
 		{
-			if (ev.type == SDL_QUIT)
+			if (event.type == SDL_QUIT)
 			{
 				running = false;
 
 				SDL_Quit();
 				break;
+			}
+			else if(event.type == SDL_MOUSEBUTTONUP)
+			{
+				this->handleClick(event.button);
 			}
 		}
 
@@ -136,6 +147,8 @@ void UIManager::createUIFlagIndicator()
 
 	this->uiFlagNumber.push_back(firstDigit);
 	this->uiFlagNumber.push_back(secondDigit);
+
+	this->setFlagNumber();
 }
 
 void UIManager::createUIGrid()
@@ -154,4 +167,83 @@ void UIManager::createUIGrid()
 
 		this->uiGridCells.push_back(cells);
 	}
+}
+
+void UIManager::handleClick(SDL_MouseButtonEvent event)
+{
+	int buttonClicked = this->checkIfButtonClicked(event.x, event.y);
+	if (buttonClicked != buttonEscapeValue)
+	{
+		this->gameMng->ChangeGameDifficulty(buttonClicked);
+		return;
+	}
+
+	if (this->checkIfGridClicked(event.x, event.y)) 
+	{
+		if (event.button == SDL_BUTTON_LEFT)
+		{
+
+		}
+		else if (event.button == SDL_BUTTON_RIGHT)
+		{
+			if (this->flags != 0) 
+			{
+				this->flags--;
+				this->uiGridCells[this->CurrentClickedCellRow][this->CurrentClickedCellColumn]->ChangeImage("ArtRes/FlagCell.bmp");
+				this->gameMng->SetFlag();
+				this->setFlagNumber();
+			}
+		}
+
+		SDL_UpdateWindowSurface(this->window);
+	}
+}
+
+int UIManager::checkIfButtonClicked(int x, int y)
+{
+	int resultButtonNumber = buttonEscapeValue;
+
+	if (y <= cellSizeUI) 
+	{
+		if (x <= buttonWidthUI) 
+		{
+			return 0;
+		}
+		else if(x <= buttonWidthUI * 2)
+		{
+			return 1;
+		}
+		else if (x <= buttonWidthUI * 3) 
+		{
+			return 2;
+		}
+	}
+
+	return resultButtonNumber;
+}
+
+bool UIManager::checkIfGridClicked(int x, int y)
+{
+	int gridStartPositionY = cellSizeUI * 2 + verticalEmptySpace;
+
+	if (y > gridStartPositionY) 
+	{
+		this->CurrentClickedCellRow = (y - gridStartPositionY) / cellSizeUI;
+		this->CurrentClickedCellColumn = x / cellSizeUI;
+
+		return true;
+	}
+
+	return false;
+}
+
+void UIManager::setFlagNumber()
+{
+	char integer_string[32];
+
+	sprintf(integer_string, "ArtRes/Cell%d.bmp", this->flags / 10);
+	this->uiFlagNumber[0]->ChangeImage(integer_string);
+	
+	sprintf(integer_string, "ArtRes/Cell%d.bmp", this->flags % 10);
+	this->uiFlagNumber[1]->ChangeImage(integer_string);
 }
