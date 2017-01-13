@@ -116,6 +116,8 @@ void UIManager::Reset()
 			this->uiGridCells[i][j]->ChangeImage("ArtRes/UnclickedCell.bmp");
 		}
 	}
+
+	SDL_UpdateWindowSurface(this->window);
 }
 
 void UIManager::limitFramerate(Uint32 start_tick)
