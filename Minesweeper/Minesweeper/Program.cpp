@@ -1,5 +1,4 @@
-#include "SDL.h"
-#include "Grid.h"
+#include "GameManager.h"
 #include<iostream>
 #include<string>
 
@@ -24,6 +23,10 @@ int main(int argc, char **argv)
 	grid->ShowGrid();
 
 	cin >> rows;*/
+
+	GameManager* gameManager = new GameManager();
+
+	gameManager->StartGame();
 
 	return 0;
 }

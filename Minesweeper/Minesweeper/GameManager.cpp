@@ -1,9 +1,6 @@
 #include "GameManager.h"
 #include "Grid.h"
-
-#define verticalEmptySpace 
-#define cellSizeUI 34
-#define buttonWidthUI 102
+#include "UIManager.h"
 
 #define easyRowNumber 9
 #define easyColumnNumber 9
@@ -20,6 +17,8 @@
 
 GameManager::GameManager()
 {
+	this->grid = NULL;
+	this->uiManager = NULL;
 }
 
 GameManager::~GameManager()
@@ -28,12 +27,11 @@ GameManager::~GameManager()
 
 void GameManager::StartGame()
 {
+	this->uiManager = new UIManager();
 	this->ChangeGameDifficulty(0);
-
-
 }
 
-void GameManager::ChangeGameDifficulty(unsigned int gameMode)
+void GameManager::ChangeGameDifficulty(int gameMode)
 {
 	if (this->GameMode == gameMode)
 	{
@@ -68,6 +66,8 @@ void GameManager::ChangeGameDifficulty(unsigned int gameMode)
 	}
 
 	this->grid = new Grid(rows, columns, bombs);
+	this->uiManager->Setup(rows, columns);
+	this->uiManager->Update();
 }
 
 

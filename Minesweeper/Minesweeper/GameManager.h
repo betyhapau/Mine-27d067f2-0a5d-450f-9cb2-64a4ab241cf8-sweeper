@@ -1,17 +1,20 @@
 #include "Grid.h"
+#include "UIManager.h"
 #pragma once
 
 class GameManager
 {
 private:
 	Grid* grid;
+	UIManager* uiManager;
+
 public:
-	unsigned int GameMode;
+	int GameMode;
 
 	GameManager();
 	~GameManager();
 
 	void StartGame();
-	void ChangeGameDifficulty(unsigned int gameMode);
+	void ChangeGameDifficulty(int gameMode);
 };
 
