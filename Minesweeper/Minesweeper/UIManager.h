@@ -17,7 +17,7 @@ public:
 	~UIManager();
 
 	void Setup();
-	void GenerateGrid(Grid grid);
+	void GenerateGrid(Grid* grid);
 	void Update();
 };
 

@@ -10,7 +10,6 @@
 
 using namespace std;
 
-
 UIManager::UIManager()
 {
 	this->window = NULL;
@@ -28,7 +27,7 @@ void UIManager::Setup()
 	this->setWindowScreen();
 }
 
-void UIManager::GenerateGrid(Grid grid)
+void UIManager::GenerateGrid(Grid* grid)
 {
 }
 
@@ -82,7 +81,7 @@ void UIManager::setWindowScreen()
 	this->screen = SDL_GetWindowSurface(this->window);
 
 	// Change things at the rendering level
-	Uint32 backgroundColor = SDL_MapRGB(this->screen->format, 18, 52, 86);
+	Uint32 backgroundColor = SDL_MapRGB(this->screen->format, 0, 0, 0);
 	SDL_FillRect(this->screen, NULL, backgroundColor);
 	SDL_UpdateWindowSurface(this->window);
 }

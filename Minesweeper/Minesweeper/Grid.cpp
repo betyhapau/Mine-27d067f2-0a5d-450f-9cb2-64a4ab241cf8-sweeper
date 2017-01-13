@@ -61,6 +61,8 @@ void Grid::Reset()
 			this->gridWithCells[i][j]->Reset();
 		}
 	}
+
+	this->GenerateGrid();
 }
 
 // Creates the Grid according to rows and columns
@@ -104,6 +106,7 @@ void Grid::CreateGrid()
 		}
 	}
 
+	this->GenerateGrid();
 }
 
 void Grid::GetElements(int index, int j, std::vector<GridCell*> &neighbours)
